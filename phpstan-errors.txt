@@ -1,0 +1,229 @@
+Note: Using configuration file /home/omega/Documents/project/nexora_erp/phpstan.neon.
+  0/57 [░░░░░░░░░░░░░░░░░░░░░░░░░░░░]   0%[1G[2K 57/57 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  Line   app/Actions/Branch/FetchBranch.php                                                                                                                                
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+  10     Method App\Actions\Branch\FetchBranch::execute() return type with generic class Illuminate\Database\Eloquent\Collection does not specify its types: TKey, TModel  
+         🪪  missingType.generics                                                                                                                                          
+  12     Relation 'company' is not found in App\Models\Branch model.                                                                                                       
+         🪪  larastan.relationExistence                                                                                                                                    
+ ------ ------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
+
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   app/Actions/Company/FetchCompany.php                                                                                                                                
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+  10     Method App\Actions\Company\FetchCompany::execute() return type with generic class Illuminate\Database\Eloquent\Collection does not specify its types: TKey, TModel  
+         🪪  missingType.generics                                                                                                                                            
+  12     Relation 'branches' is not found in App\Models\Company model.                                                                                                       
+         🪪  larastan.relationExistence                                                                                                                                      
+ ------ -------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  Line   app/DTO/Branch/CreateBranchDTO.php                                                                                           
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+  27     Method App\DTO\Branch\CreateBranchDTO::fromArray() has parameter $data with no value type specified in iterable type array.  
+         🪪  missingType.iterableValue                                                                                                
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type                                   
+  50     Method App\DTO\Branch\CreateBranchDTO::toArray() return type has no value type specified in iterable type array.             
+         🪪  missingType.iterableValue                                                                                                
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type                                   
+ ------ ----------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------------------------------------------- 
+  Line   app/DTO/Company/CreateCompanyDTO.php                                                                                           
+ ------ ------------------------------------------------------------------------------------------------------------------------------- 
+  25     Method App\DTO\Company\CreateCompanyDTO::fromArray() has parameter $data with no value type specified in iterable type array.  
+         🪪  missingType.iterableValue                                                                                                  
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type                                     
+  46     Method App\DTO\Company\CreateCompanyDTO::toArray() return type has no value type specified in iterable type array.             
+         🪪  missingType.iterableValue                                                                                                  
+         💡  See: https://phpstan.org/blog/solving-phpstan-no-value-type-specified-in-iterable-type                                     
+ ------ ------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------------------------------------------ 
+  Line   app/Helpers/ApiResponse.php                                                               
+ ------ ------------------------------------------------------------------------------------------ 
+  14     Method App\Helpers\ApiResponse::success() has parameter $data with no type specified.     
+         🪪  missingType.parameter                                                                 
+  14     Method App\Helpers\ApiResponse::success() has parameter $message with no type specified.  
+         🪪  missingType.parameter                                                                 
+  14     Method App\Helpers\ApiResponse::success() has parameter $status with no type specified.   
+         🪪  missingType.parameter                                                                 
+  28     Method App\Helpers\ApiResponse::error() has parameter $message with no type specified.    
+         🪪  missingType.parameter                                                                 
+  28     Method App\Helpers\ApiResponse::error() has parameter $status with no type specified.     
+         🪪  missingType.parameter                                                                 
+ ------ ------------------------------------------------------------------------------------------ 
+
+ ------ ------------------------------------------------------------------------------------------------- 
+  Line   app/Http/Controllers/Api/v1/Branch/BranchController.php                                          
+ ------ ------------------------------------------------------------------------------------------------- 
+  11     Method App\Http\Controllers\Api\v1\Branch\BranchController::get() has no return type specified.  
+         🪪  missingType.return                                                                           
+ ------ ------------------------------------------------------------------------------------------------- 
+
+ ------ ----------------------------------------------------------------------------------------------------- 
+  Line   app/Http/Controllers/Api/v1/Company/CompanyController.php                                            
+ ------ ----------------------------------------------------------------------------------------------------- 
+  15     Method App\Http\Controllers\Api\v1\Company\CompanyController::store() has no return type specified.  
+         🪪  missingType.return                                                                               
+  24     Method App\Http\Controllers\Api\v1\Company\CompanyController::get() has no return type specified.    
+         🪪  missingType.return                                                                               
+ ------ ----------------------------------------------------------------------------------------------------- 
+
+ ------ -------------------------------------------------------------------------------------------- 
+  Line   app/Http/Resources/Branch/BranchResource.php                                                
+ ------ -------------------------------------------------------------------------------------------- 
+  18     Access to an undefined property App\Http\Resources\Branch\BranchResource::$id.              
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  19     Access to an undefined property App\Http\Resources\Branch\BranchResource::$name.            
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  20     Access to an undefined property App\Http\Resources\Branch\BranchResource::$code.            
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  23     Access to an undefined property App\Http\Resources\Branch\BranchResource::$email.           
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  24     Access to an undefined property App\Http\Resources\Branch\BranchResource::$phone.           
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  28     Access to an undefined property App\Http\Resources\Branch\BranchResource::$address.         
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  29     Access to an undefined property App\Http\Resources\Branch\BranchResource::$city.            
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  30     Access to an undefined property App\Http\Resources\Branch\BranchResource::$state.           
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  31     Access to an undefined property App\Http\Resources\Branch\BranchResource::$country.         
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  32     Access to an undefined property App\Http\Resources\Branch\BranchResource::$postal_code.     
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  33     Access to an undefined property App\Http\Resources\Branch\BranchResource::$latitude.        
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  34     Access to an undefined property App\Http\Resources\Branch\BranchResource::$longitude.       
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  37     Access to an undefined property App\Http\Resources\Branch\BranchResource::$manager_name.    
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  38     Access to an undefined property App\Http\Resources\Branch\BranchResource::$timezone.        
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  40     Access to an undefined property App\Http\Resources\Branch\BranchResource::$is_head_office.  
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  41     Access to an undefined property App\Http\Resources\Branch\BranchResource::$is_active.       
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  43     Access to an undefined property App\Http\Resources\Branch\BranchResource::$description.     
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  45     Access to an undefined property App\Http\Resources\Branch\BranchResource::$created_at.      
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+  46     Access to an undefined property App\Http\Resources\Branch\BranchResource::$updated_at.      
+         🪪  property.notFound                                                                       
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property       
+ ------ -------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------- 
+  Line   app/Http/Resources/Company/CompanyResource.php                                                     
+ ------ --------------------------------------------------------------------------------------------------- 
+  19     Access to an undefined property App\Http\Resources\Company\CompanyResource::$id.                   
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  20     Access to an undefined property App\Http\Resources\Company\CompanyResource::$name.                 
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  21     Access to an undefined property App\Http\Resources\Company\CompanyResource::$code.                 
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  23     Access to an undefined property App\Http\Resources\Company\CompanyResource::$legal_name.           
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  24     Access to an undefined property App\Http\Resources\Company\CompanyResource::$registration_number.  
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  25     Access to an undefined property App\Http\Resources\Company\CompanyResource::$tax_number.           
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  28     Access to an undefined property App\Http\Resources\Company\CompanyResource::$email.                
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  29     Access to an undefined property App\Http\Resources\Company\CompanyResource::$phone.                
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  30     Access to an undefined property App\Http\Resources\Company\CompanyResource::$website.              
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  34     Access to an undefined property App\Http\Resources\Company\CompanyResource::$address.              
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  35     Access to an undefined property App\Http\Resources\Company\CompanyResource::$city.                 
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  36     Access to an undefined property App\Http\Resources\Company\CompanyResource::$state.                
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  37     Access to an undefined property App\Http\Resources\Company\CompanyResource::$country.              
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  38     Access to an undefined property App\Http\Resources\Company\CompanyResource::$postal_code.          
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  41     Access to an undefined property App\Http\Resources\Company\CompanyResource::$logo.                 
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  43     Access to an undefined property App\Http\Resources\Company\CompanyResource::$is_active.            
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  49     Access to an undefined property App\Http\Resources\Company\CompanyResource::$created_at.           
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+  50     Access to an undefined property App\Http\Resources\Company\CompanyResource::$updated_at.           
+         🪪  property.notFound                                                                              
+         💡  Learn more: https://phpstan.org/blog/solving-phpstan-access-to-undefined-property              
+ ------ --------------------------------------------------------------------------------------------------- 
+
+ ------ --------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   app/Models/Branch.php                                                                                                                  
+ ------ --------------------------------------------------------------------------------------------------------------------------------------- 
+  11     Class App\Models\Branch uses generic trait Illuminate\Database\Eloquent\Factories\HasFactory but does not specify its types: TFactory  
+         🪪  missingType.generics                                                                                                               
+  43     Method App\Models\Branch::company() has no return type specified.                                                                      
+         🪪  missingType.return                                                                                                                 
+ ------ --------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+  Line   app/Models/Company.php                                                                                                                  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+  11     Class App\Models\Company uses generic trait Illuminate\Database\Eloquent\Factories\HasFactory but does not specify its types: TFactory  
+         🪪  missingType.generics                                                                                                                
+  38     Method App\Models\Company::branches() has no return type specified.                                                                     
+         🪪  missingType.return                                                                                                                  
+ ------ ---------------------------------------------------------------------------------------------------------------------------------------- 
+
+ ------ ------------------------------------------------------- 
+  Line   database/factories/BranchFactory.php                   
+ ------ ------------------------------------------------------- 
+  27     Call to an undefined method Faker\Generator::state().  
+         🪪  method.notFound                                    
+ ------ ------------------------------------------------------- 
+
+ ------ ------------------------------------------------------- 
+  Line   database/factories/CompanyFactory.php                  
+ ------ ------------------------------------------------------- 
+  33     Call to an undefined method Faker\Generator::state().  
+         🪪  method.notFound                                    
+ ------ ------------------------------------------------------- 
+
+ [ERROR] Found 59 errors                                                                                                
+

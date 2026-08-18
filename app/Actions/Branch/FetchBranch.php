@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Collection;
 
 class FetchBranch
 {
+    /**
+     * @return Collection<int, Branch>
+     */
     public function execute(): Collection
     {
         return Branch::with('company')->get();

@@ -8,7 +8,6 @@ use App\DTO\Company\CreateCompanyDTO;
 use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Company\CreateCompanyRequest;
-use App\Http\Resources\Branch\BranchResource;
 use App\Http\Resources\Company\CompanyResource;
 
 class CompanyController extends Controller

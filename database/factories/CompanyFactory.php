@@ -16,6 +16,7 @@ class CompanyFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Company::class;
+
     public function definition(): array
     {
         return [

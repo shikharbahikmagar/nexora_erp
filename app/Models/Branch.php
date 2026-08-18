@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Branch extends Model
 {
-    use SoftDeletes, HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'company_id',
@@ -40,7 +41,10 @@ class Branch extends Model
         ];
     }
 
-    public function company()
+    /**
+     * @return BelongsTo<int, Branch>
+     */
+    public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }

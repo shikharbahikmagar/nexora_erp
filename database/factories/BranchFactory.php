@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Branch;
-use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +16,7 @@ class BranchFactory extends Factory
     {
         return [
 
-            'name' => fake()->company() . ' Branch',
+            'name' => fake()->company().' Branch',
             'code' => fake()->unique()->bothify('BR-###'),
 
             'email' => fake()->unique()->companyEmail(),
@@ -45,14 +44,14 @@ class BranchFactory extends Factory
 
     public function headOffice(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'is_head_office' => true,
         ]);
     }
 
     public function inactive(): static
     {
-        return $this->state(fn(array $attributes) => [
+        return $this->state(fn (array $attributes) => [
             'is_active' => false,
         ]);
     }
