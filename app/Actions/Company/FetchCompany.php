@@ -10,10 +10,8 @@ class FetchCompany
     /**
      * @return LengthAwarePaginator<int, Company>
      */
-    public function execute(
-        ?string $search = null,
-        int $perPage = 10,
-    ): LengthAwarePaginator {
+    public function execute(?string $search = null, int $perPage = 10,): LengthAwarePaginator
+    {
         return Company::query()
             ->with('branches')
             ->when($search, function ($query) use ($search) {
