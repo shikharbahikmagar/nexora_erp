@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Http\Controllers\Api\v1\Auth;
+
+use App\Actions\Auth\LoginAction;
+use App\Actions\Auth\RegisterAction;
+use App\Helpers\ApiResponse;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
+
+class AuthController extends Controller
+{
+    public function register(RegisterRequest $request, RegisterAction $action): JsonResponse
+    {
+        $result = $action->execute(
+            $request->string('name')->toString(),
+            $request->string('email')->toString(),
+            $request->string('password')->toString(),
+        );
+
+        return response()->json([
+            'message' => 'Registration successful.',
+            'data' => $result,
+        ], 201);
+    }
+
+
+    public function login(LoginRequest $request, LoginAction $action): JsonResponse
+    {
+        $result = $action->execute(
+            $request->string('email')->toString(),
+            $request->string('password')->toString(),
+        );
+
+        return ApiResponse::success(
+            $result,
+            'Login successful.',
+        );
+    }
+
+
+    public function me(): JsonResponse
+    {
+        return ApiResponse::success(
+            Auth::user(),
+            'Profile Fetched Successfully.',
+        );
+    }
+
+
+    public function logout()
+    {
+        //
+    }
+}
