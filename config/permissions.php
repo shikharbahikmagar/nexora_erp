@@ -21,4 +21,11 @@ return [
         'update',
         'delete',
     ],
+    'users' => [
+        'view',
+        'create',
+        'update',
+        'delete',
+        'assign-role',
+    ],
 ];
