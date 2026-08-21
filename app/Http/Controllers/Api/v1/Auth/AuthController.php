@@ -9,10 +9,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     *Register New User
+     */
+
     public function register(RegisterRequest $request, RegisterAction $action): JsonResponse
     {
         $result = $action->execute(
@@ -27,6 +32,9 @@ class AuthController extends Controller
         ], 201);
     }
 
+    /**
+     *Login User
+     */
 
     public function login(LoginRequest $request, LoginAction $action): JsonResponse
     {
@@ -41,6 +49,9 @@ class AuthController extends Controller
         );
     }
 
+    /**
+     *Get Me
+     */
 
     public function me(): JsonResponse
     {
@@ -50,9 +61,16 @@ class AuthController extends Controller
         );
     }
 
+    /**
+     *Logout Me
+     */
 
-    public function logout()
+    public function logout(Request $request): JsonResponse
     {
-        //
+        $request->user()->currentAccessToken()->delete();
+
+        return ApiResponse::success(
+            message: 'Logged out successfully.'
+        );
     }
 }

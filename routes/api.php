@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\v1\Auth\AuthController;
 use App\Http\Controllers\Api\v1\Branch\BranchController;
 use App\Http\Controllers\Api\v1\Company\CompanyController;
+use App\Http\Controllers\Api\v1\User\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,5 +39,12 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/auth/me', [AuthController::class, 'me']);
         Route::post('/auth/logout', [AuthController::class, 'logout']);
+    });
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post(
+            '/users/{user}/role',
+            [UserRoleController::class, 'assign']
+        );
     });
 });
