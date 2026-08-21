@@ -1,0 +1,57 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    container_name: nexora_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+    networks:
+      - nexora
+
+  nginx:
+    image: nginx:alpine
+    container_name: nexora_nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - nexora
+
+  postgres:
+    image: postgres:17
+    container_name: nexora_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nexora_erp
+      POSTGRES_USER: nexora
+      POSTGRES_PASSWORD: nexora_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nexora
+
+  redis:
+    image: redis:alpine
+    container_name: nexora_redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - nexora
+
+networks:
+  nexora:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
