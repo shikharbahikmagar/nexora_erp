@@ -10,17 +10,22 @@ use App\Actions\Branch\UpdateBranch;
 use App\DTO\Branch\CreateBranchDTO;
 use App\DTO\Branch\UpdateBranchDTO;
 use App\Helpers\ApiResponse;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\v1\BaseController;
 use App\Http\Requests\Branch\CreateBranchRequest;
 use App\Http\Requests\Branch\UpdateBranchRequest;
 use App\Http\Resources\Branch\BranchResource;
 use App\Models\Branch;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
-class BranchController extends Controller
+class BranchController extends BaseController
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Branch::class, 'branch');
+    }
+
+
     /**
      *Get All Branches
      */
