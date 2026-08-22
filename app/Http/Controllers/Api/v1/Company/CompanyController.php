@@ -10,7 +10,7 @@ use App\Actions\Company\UpdateCompany;
 use App\DTO\Company\CreateCompanyDTO;
 use App\DTO\Company\UpdateCompanyDTO;
 use App\Helpers\ApiResponse;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\v1\BaseController;
 use App\Http\Requests\Company\CreateCompanyRequest;
 use App\Http\Requests\Company\UpdateCompanyRequest;
 use App\Http\Resources\Company\CompanyResource;
@@ -18,8 +18,14 @@ use App\Models\Company;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class CompanyController extends BaseController
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Company::class, 'company');
+    }
+
+
     /**
      * Fetch all companies
      */
