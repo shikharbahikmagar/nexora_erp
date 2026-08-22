@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\v1\Auth\AuthController;
 use App\Http\Controllers\Api\v1\Branch\BranchController;
+use App\Http\Controllers\Api\v1\CompanyUser\CompanyUserController;
 use App\Http\Controllers\Api\v1\Company\CompanyController;
 use App\Http\Controllers\Api\v1\User\UserRoleController;
 use Illuminate\Support\Facades\Route;
@@ -39,9 +40,18 @@ Route::prefix('v1')->group(function () {
         Route::delete('/delete-branch/{branch}', [BranchController::class, 'destroy']);
 
 
+        Route::get('company-users', [CompanyUserController::class, 'index']);
 
-
-
+        Route::post('company-users/{company}', [CompanyUserController::class, 'store']);
+        /* Route::get('company-users/{companyUser}', [CompanyUserController::class, 'show']) */
+        /*     ->can('view', 'companyUser'); */
+        /**/
+        /* Route::put('company-users/{companyUser}', [CompanyUserController::class, 'update']) */
+        /*     ->can('update', 'companyUser'); */
+        /**/
+        /* Route::delete('company-users/{companyUser}', [CompanyUserController::class, 'destroy']) */
+        /*     ->can('delete', 'companyUser'); */
+        /**/
 
         Route::get('/auth/me', [AuthController::class, 'me']);
         Route::post('/auth/logout', [AuthController::class, 'logout']);
