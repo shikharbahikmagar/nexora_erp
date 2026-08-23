@@ -85,6 +85,7 @@ return [
             'darkMode' => false,
             'showDeveloperTools' => 'never',
             'agent' => ['disabled' => true],
+            'persistAuth' => true,
             'credentials' => 'include',
         ],
     ],

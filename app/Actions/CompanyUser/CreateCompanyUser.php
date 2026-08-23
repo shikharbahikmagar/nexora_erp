@@ -27,6 +27,6 @@ class CreateCompanyUser
             'user_id' => $dto->userId,
             'role_id' => $dto->roleId,
             'is_active' => $dto->isActive,
-        ]);
+        ])->load(['company', 'role', 'user']);
     }
 }
