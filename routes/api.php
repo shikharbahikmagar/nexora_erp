@@ -15,6 +15,12 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
 
+        //Get My Detail
+        Route::get('/auth/me', [AuthController::class, 'me']);
+        //Logout User
+        Route::post('/auth/logout', [AuthController::class, 'logout']);
+
+
         // get all companies with branches
         Route::get('/get-company', [CompanyController::class, 'index']);
         // get company Detail with branches
@@ -37,12 +43,16 @@ Route::prefix('v1')->group(function () {
         // soft delete branch
         Route::delete('/delete-branch/{branch}', [BranchController::class, 'destroy']);
 
+
+        //Company USers
         Route::get('company-users', [CompanyUserController::class, 'index']);
         Route::post('company-users/{company}', [CompanyUserController::class, 'store']);
         Route::get('company-users/{companyUser}', [CompanyUserController::class, 'show']);
         Route::patch('company-users/{companyUser}', [CompanyUserController::class, 'update']);
         Route::delete('company-users/{companyUser}', [CompanyUserController::class, 'destroy']);
 
+
+        //Company Employee
         Route::get('employees', [EmployeeController::class, 'index']);
         Route::post('employees', [EmployeeController::class, 'store']);
         Route::get('employees/{employee}', [EmployeeController::class, 'show']);
@@ -50,8 +60,6 @@ Route::prefix('v1')->group(function () {
         Route::patch('employees/{employee}', [EmployeeController::class, 'update']);
         Route::delete('employees/{employee}', [EmployeeController::class, 'destroy']);
 
-        Route::get('/auth/me', [AuthController::class, 'me']);
-        Route::post('/auth/logout', [AuthController::class, 'logout']);
 
         Route::post('/users/{user}/role', [UserRoleController::class, 'assign']);
     });

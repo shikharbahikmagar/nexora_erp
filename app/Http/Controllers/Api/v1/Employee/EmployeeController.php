@@ -25,6 +25,10 @@ class EmployeeController extends BaseController
         $this->authorizeResource(Employee::class, 'employee');
     }
 
+    /**
+     * Fetch all Company Users
+     */
+
     public function index(Request $request, FetchEmployee $action): JsonResponse
     {
         $employees = $action->execute(
