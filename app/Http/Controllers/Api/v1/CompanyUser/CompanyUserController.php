@@ -27,7 +27,7 @@ class CompanyUserController extends BaseController
 
 
     /**
-     * Fetch all Company Users
+     * Fetch all Employees
      */
     public function index(FetchCompanyUser $action): JsonResponse
     {
