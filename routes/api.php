@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\v1\Auth\AuthController;
 use App\Http\Controllers\Api\v1\Branch\BranchController;
 use App\Http\Controllers\Api\v1\Company\CompanyController;
 use App\Http\Controllers\Api\v1\CompanyUser\CompanyUserController;
+use App\Http\Controllers\Api\v1\Employee\EmployeeController;
 use App\Http\Controllers\Api\v1\User\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,13 @@ Route::prefix('v1')->group(function () {
         Route::get('company-users/{companyUser}', [CompanyUserController::class, 'show']);
         Route::patch('company-users/{companyUser}', [CompanyUserController::class, 'update']);
         Route::delete('company-users/{companyUser}', [CompanyUserController::class, 'destroy']);
+
+        Route::get('employees', [EmployeeController::class, 'index']);
+        Route::post('employees', [EmployeeController::class, 'store']);
+        Route::get('employees/{employee}', [EmployeeController::class, 'show']);
+        Route::put('employees/{employee}', [EmployeeController::class, 'update']);
+        Route::patch('employees/{employee}', [EmployeeController::class, 'update']);
+        Route::delete('employees/{employee}', [EmployeeController::class, 'destroy']);
 
         Route::get('/auth/me', [AuthController::class, 'me']);
         Route::post('/auth/logout', [AuthController::class, 'logout']);

@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\CompanyUser;
+use App\Models\Employee;
 use App\Policies\CompanyUser\CompanyUserPolicy;
+use App\Policies\EmployeePolicy;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -29,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $this->configureDefaults();
 
         Gate::policy(CompanyUser::class, CompanyUserPolicy::class);
+        Gate::policy(Employee::class, EmployeePolicy::class);
     }
 
     /**

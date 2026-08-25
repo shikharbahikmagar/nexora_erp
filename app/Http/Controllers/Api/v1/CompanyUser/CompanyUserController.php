@@ -25,6 +25,10 @@ class CompanyUserController extends BaseController
         $this->authorizeResource(CompanyUser::class, 'companyUser');
     }
 
+
+    /**
+     * Fetch all Company Users
+     */
     public function index(FetchCompanyUser $action): JsonResponse
     {
         $companyUsers = $action->execute();
@@ -35,6 +39,10 @@ class CompanyUserController extends BaseController
         );
     }
 
+
+    /**
+     * Create Company Users
+     */
     public function store(CreateCompanyUserRequest $request, Company $company, CreateCompanyUser $action): JsonResponse
     {
         $dto = CreateCompanyUserDTO::fromArray(
@@ -50,6 +58,10 @@ class CompanyUserController extends BaseController
         );
     }
 
+
+    /**
+     * Get Company User
+     */
     public function show(CompanyUser $companyUser, GetCompanyUser $action): JsonResponse
     {
         return ApiResponse::success(
@@ -58,6 +70,10 @@ class CompanyUserController extends BaseController
         );
     }
 
+
+    /**
+     * Update Compny Users
+     */
     public function update(
         UpdateCompanyUserRequest $request,
         CompanyUser $companyUser,
@@ -74,6 +90,10 @@ class CompanyUserController extends BaseController
         );
     }
 
+
+    /**
+     * Destroy Company Users
+     */
     public function destroy(CompanyUser $companyUser, DeleteCompanyUser $action): JsonResponse
     {
         $action->execute($companyUser);

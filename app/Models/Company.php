@@ -43,4 +43,12 @@ class Company extends Model
     {
         return $this->hasMany(Branch::class);
     }
+
+    /**
+     * @return HasMany<int, CompanyUser>
+     */
+    public function companyUsers(): HasMany
+    {
+        return $this->hasMany(CompanyUser::class);
+    }
 }
