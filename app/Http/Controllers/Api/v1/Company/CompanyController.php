@@ -29,18 +29,19 @@ class CompanyController extends BaseController
     /**
      * Fetch all companies
      */
-    public function index(Request $request, FetchCompany $action)
+    public function index(Request $request, FetchCompany $action): JsonResponse
     {
-        $companies = $action->execute(
+        $resp = $action->execute(
             search: $request->string('search')->toString(),
             perPage: $request->integer('per_page', 10),
         );
 
 
-        return CompanyResource::collection($companies)
-            ->additional([
-                'message' => 'Company fetched successfully',
-            ]);
+
+        return ApiResponse::success(
+            $resp,
+            'Companies fetched successfully'
+        );
     }
 
     /**
