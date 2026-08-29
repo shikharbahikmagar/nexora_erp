@@ -15,7 +15,6 @@ class FetchBranch
     {
         return Branch::query()
             ->with('company')
-            ->orderBy('id', 'asc')
             ->when($search, function ($query) use ($search) {
                 $query
                     ->where('name', 'like', "%{$search}%")
