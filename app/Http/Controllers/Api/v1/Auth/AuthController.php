@@ -55,12 +55,15 @@ class AuthController extends Controller
 
     public function me(): JsonResponse
     {
-        return ApiResponse::success(
-            Auth::user(),
-            'Profile Fetched Successfully.',
-        );
-    }
+        $user = Auth::user();
 
+        return ApiResponse::success([
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'role' => $user->getRoleNames()->first(),
+        ], 'Profile Fetched Successfully.');
+    }
     /**
      *Logout Me
      */

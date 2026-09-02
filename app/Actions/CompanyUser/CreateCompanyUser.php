@@ -25,8 +25,7 @@ class CreateCompanyUser
         return CompanyUser::create([
             'company_id' => $company->id,
             'user_id' => $dto->userId,
-            'role_id' => $dto->roleId,
             'is_active' => $dto->isActive,
-        ])->load(['company', 'role', 'user']);
+        ])->load(['company', 'user']);
     }
 }

@@ -14,7 +14,6 @@ return new class extends Migration
                 ->constrained('company_users')
                 ->cascadeOnDelete();
 
-            $table->dropIndex(['company_id', 'branch_id']);
             $table->dropForeign(['user_id']);
             $table->dropForeign(['company_id']);
             $table->dropUnique(['user_id']);
@@ -23,8 +22,6 @@ return new class extends Migration
                 'user_id',
                 'company_id',
             ]);
-
-            $table->index(['company_user_id', 'branch_id']);
         });
     }
 
@@ -44,10 +41,8 @@ return new class extends Migration
                 ->constrained('companies')
                 ->cascadeOnDelete();
 
-            $table->dropIndex(['company_user_id', 'branch_id']);
             $table->dropForeign(['company_user_id']);
             $table->dropColumn('company_user_id');
-            $table->index(['company_id', 'branch_id']);
         });
     }
 };

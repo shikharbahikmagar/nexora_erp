@@ -36,12 +36,6 @@ class UpdateCompanyUserRequest extends FormRequest
                     ->where('company_id', $companyUser->company_id)
                     ->ignore($companyUser),
             ],
-            'role_id' => [
-                'sometimes',
-                'nullable',
-                'integer',
-                'exists:roles,id',
-            ],
             'is_active' => [
                 'sometimes',
                 'boolean',

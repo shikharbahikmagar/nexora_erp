@@ -23,11 +23,6 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->foreignId('role_id')
-                ->nullable()
-                ->constrained('roles')
-                ->nullOnDelete();
-
             $table->boolean('is_active')->default(true);
 
             $table->timestamps();
