@@ -4,6 +4,7 @@ namespace App\Http\Requests\Company;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateCompanyRequest extends FormRequest
 {
@@ -12,7 +13,7 @@ class CreateCompanyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::user()->can('companies.create');
     }
 
     /**

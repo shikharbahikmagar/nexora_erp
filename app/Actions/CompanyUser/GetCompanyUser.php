@@ -8,6 +8,6 @@ class GetCompanyUser
 {
     public function execute(CompanyUser $companyUser): CompanyUser
     {
-        return $companyUser->load(['company', 'role', 'user']);
+        return $companyUser->load(['company', 'user']);
     }
 }

@@ -15,15 +15,12 @@ class FetchBranch
     {
         return Branch::query()
             ->with('company')
-            ->orderBy('id', 'asc')
             ->when($search, function ($query) use ($search) {
-                $query->where(function ($query) use ($search) {
-                    $query
-                        ->where('name', 'like', "%{$search}%")
-                        ->orWhere('code', 'like', "%{$search}%")
-                        ->orWhere('email', 'like', "%{$search}%")
-                        ->orWhere('phone', 'like', "%{$search}%");
-                });
+                $query
+                    ->where('name', 'like', "%{$search}%")
+                    ->orWhere('code', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%");
             })
             ->orderBy('id', 'asc')
             ->paginate($perPage);

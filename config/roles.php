@@ -5,6 +5,7 @@ return [
         'permissions' => '*',
     ],
 
+
     'company_admin' => [
         'permissions' => [
             'companies.view',

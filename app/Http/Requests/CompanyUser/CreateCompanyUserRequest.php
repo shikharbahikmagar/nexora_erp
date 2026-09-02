@@ -20,11 +20,6 @@ class CreateCompanyUserRequest extends FormRequest
                 'exists:users,id',
             ],
 
-            'role_id' => [
-                'nullable',
-                'integer',
-                'exists:roles,id',
-            ],
 
             'is_active' => [
                 'sometimes',

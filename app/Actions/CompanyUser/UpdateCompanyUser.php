@@ -11,6 +11,6 @@ class UpdateCompanyUser
     {
         $companyUser->update($dto->toArray());
 
-        return $companyUser->refresh()->load(['company', 'role', 'user']);
+        return $companyUser->refresh()->load(['company',  'user']);
     }
 }

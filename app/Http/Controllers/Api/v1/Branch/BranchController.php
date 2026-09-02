@@ -39,7 +39,7 @@ class BranchController extends BaseController
 
         return ApiResponse::success(
             $resp,
-            'Branches Fetched Successfully',
+            'Branches Fetched Successfully.',
             200
         );
     }

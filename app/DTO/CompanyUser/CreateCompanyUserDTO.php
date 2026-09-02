@@ -14,7 +14,6 @@ class CreateCompanyUserDTO
     {
         return new self(
             userId: $data['user_id'],
-            roleId: $data['role_id'] ?? null,
             isActive: $data['is_active'] ?? true,
         );
     }

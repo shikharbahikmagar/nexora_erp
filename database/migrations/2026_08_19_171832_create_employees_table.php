@@ -15,13 +15,9 @@ return new class extends Migration
             $table->id();
 
             // Relationships
-            $table->foreignId('user_id')
+            $table->foreignId('company_user_id')
                 ->unique()
-                ->constrained()
-                ->cascadeOnDelete();
-
-            $table->foreignId('company_id')
-                ->constrained()
+                ->constrained('company_users')
                 ->cascadeOnDelete();
 
             $table->foreignId('branch_id')
@@ -66,7 +62,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index(['company_id', 'branch_id']);
+            $table->index('branch_id');
             $table->index('employment_status');
         });
     }

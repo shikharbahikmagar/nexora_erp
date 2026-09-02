@@ -18,6 +18,8 @@ class RegisterAction
             'password' => Hash::make($password),
         ]);
 
+        $user->assignRole('company_admin');
+
         $token = $user->createToken('nexora-api')->plainTextToken;
 
         return [
