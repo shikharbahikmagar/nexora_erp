@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EmploymentStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -55,6 +56,7 @@ class Employee extends Model
             'confirmation_date' => 'date',
             'resignation_date' => 'date',
             'termination_date' => 'date',
+            'employment_status' => EmploymentStatus::class,
         ];
     }
 }

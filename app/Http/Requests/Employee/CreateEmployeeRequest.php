@@ -30,10 +30,10 @@ class CreateEmployeeRequest extends FormRequest
 
         return $companyUser->company_id === $branch->company_id
             && CompanyUser::query()
-                ->where('company_id', $branch->company_id)
-                ->where('user_id', $user->id)
-                ->where('is_active', true)
-                ->exists();
+            ->where('company_id', $branch->company_id)
+            ->where('user_id', $user->id)
+            ->where('is_active', true)
+            ->exists();
     }
 
     /**
@@ -45,7 +45,7 @@ class CreateEmployeeRequest extends FormRequest
     {
         return [
             'company_user_id' => ['required', 'integer', 'exists:company_users,id'],
-            'branch_id' => ['required', 'integer', 'exists:branches,id'],
+            'branch_id' => ['nullable', 'integer', 'exists:branches,id'],
             'employee_code' => ['required', 'string', 'max:255', 'unique:employees,employee_code'],
             'first_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['nullable', 'string', 'max:255'],
