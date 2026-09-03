@@ -26,7 +26,7 @@ class EmployeeController extends BaseController
     }
 
     /**
-     * Fetch all Company Users
+     * Fetch all Employees
      */
 
     public function index(Request $request, FetchEmployee $action): JsonResponse
@@ -37,8 +37,13 @@ class EmployeeController extends BaseController
             perPage: $request->integer('per_page', 10),
         );
 
-        return ApiResponse::success(EmployeeResource::collection($employees), 'Employees fetched successfully.');
+        return ApiResponse::success($employees, 'Employees fetched successfully.');
     }
+
+    /**
+     * Create Employee
+     */
+
 
     public function store(CreateEmployeeRequest $request, CreateEmployee $action): JsonResponse
     {
@@ -47,10 +52,18 @@ class EmployeeController extends BaseController
         return ApiResponse::success(new EmployeeResource($employee), 'Employee created successfully.', 201);
     }
 
+    /**
+     * Get Employee
+     */
+
     public function show(Employee $employee, GetEmployee $action): JsonResponse
     {
         return ApiResponse::success(new EmployeeResource($action->execute($employee)), 'Employee fetched successfully.');
     }
+
+    /**
+     * Update Employee
+     */
 
     public function update(UpdateEmployeeRequest $request, Employee $employee, UpdateEmployee $action): JsonResponse
     {
@@ -58,6 +71,10 @@ class EmployeeController extends BaseController
 
         return ApiResponse::success(new EmployeeResource($employee), 'Employee updated successfully.');
     }
+
+    /**
+     * Delete Employee
+     */
 
     public function destroy(Employee $employee, DeleteEmployee $action): JsonResponse
     {

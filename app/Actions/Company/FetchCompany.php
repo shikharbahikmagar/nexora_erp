@@ -24,7 +24,7 @@ class FetchCompany
     public function execute(?string $search = null, int $perPage = 10,): LengthAwarePaginator
     {
         return Company::query()
-            ->with('branches')
+            ->with('branches', 'companyUsers.employee')
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query
