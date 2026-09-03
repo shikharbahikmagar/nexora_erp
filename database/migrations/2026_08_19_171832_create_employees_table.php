@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\EmploymentStatus;
+use App\Enums\EmploymentType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +23,7 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->foreignId('branch_id')
+                ->nullable()
                 ->constrained()
                 ->cascadeOnDelete();
 
@@ -47,9 +50,8 @@ return new class extends Migration
             // Employment
             $table->date('joining_date');
 
-            $table->string('employment_type');
-            $table->string('employment_status')->default('active');
-
+            $table->string('employment_type')->default(EmploymentType::FULL_TIME->value);
+            $table->string('employment_status')->default(EmploymentStatus::ACTIVE->value);
             $table->date('probation_end_date')->nullable();
             $table->date('confirmation_date')->nullable();
 
