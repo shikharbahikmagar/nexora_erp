@@ -44,7 +44,8 @@ class CreateEmployeeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'company_user_id' => ['required', 'integer', 'exists:company_users,id'],
+            'email'         => ['required', 'email', 'max:255', 'unique:users,email'],
+            'password'      => ['required', 'string', 'min:8'],
             'branch_id' => ['nullable', 'integer', 'exists:branches,id'],
             'employee_code' => ['required', 'string', 'max:255', 'unique:employees,employee_code'],
             'first_name' => ['required', 'string', 'max:255'],
