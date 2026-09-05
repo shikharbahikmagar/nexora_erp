@@ -64,7 +64,7 @@ Route::prefix('v1')->group(function () {
         Route::get('employees', [EmployeeController::class, 'index']);
 
         // Create an employee
-        Route::post('employees', [EmployeeController::class, 'store']);
+        Route::post('employees/{company}', [EmployeeController::class, 'store']);
 
         // Get a specific employee
         Route::get('employees/{employee}', [EmployeeController::class, 'show']);

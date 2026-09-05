@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\v1\BaseController;
 use App\Http\Requests\Employee\CreateEmployeeRequest;
 use App\Http\Requests\Employee\UpdateEmployeeRequest;
 use App\Http\Resources\Employee\EmployeeResource;
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -44,14 +45,21 @@ class EmployeeController extends BaseController
      * Create Employee
      */
 
+    public function store(
+        CreateEmployeeRequest $request,
+        Company $company,
+        CreateEmployee $action
+    ): JsonResponse {
+        $dto = CreateEmployeeDTO::fromRequest($request, $company->id);
 
-    public function store(CreateEmployeeRequest $request, CreateEmployee $action): JsonResponse
-    {
-        $employee = $action->execute(CreateEmployeeDTO::fromArray($request->validated()));
+        $employee = $action->execute($company, $dto);
 
-        return ApiResponse::success(new EmployeeResource($employee), 'Employee created successfully.', 201);
+        return ApiResponse::success(
+            new EmployeeResource($employee),
+            'Employee created successfully.',
+            201
+        );
     }
-
     /**
      * Get Employee
      */
