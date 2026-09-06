@@ -70,7 +70,7 @@ class CompanyController extends BaseController
         return ApiResponse::success(
             new CompanyResource($company),
             'Company fetched successfully',
-            201
+            200
         );
     }
 
@@ -95,7 +95,6 @@ class CompanyController extends BaseController
     public function destroy(Company $company, DeleteCompany $action): JsonResponse
     {
 
-        $deleted = $action->execute($company);
 
         $deleted = $action->execute($company);
 
