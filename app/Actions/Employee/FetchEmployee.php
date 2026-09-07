@@ -12,18 +12,27 @@ class FetchEmployee
     /**
      * @return LengthAwarePaginator<int, Employee>
      */
+
+
     public function execute(User $user, ?string $search = null, int $perPage = 10): LengthAwarePaginator
     {
         return Employee::query()
             ->with(['companyUser.company', 'companyUser.user', 'branch'])
-            ->when(! $user->hasRole('super_admin'), function ($query) use ($user) {
-                $query->whereHas('branch', function ($query) use ($user) {
-                    $query->whereIn('company_id', CompanyUser::query()
-                        ->where('user_id', $user->id)
-                        ->where('is_active', true)
-                        ->select('company_id'));
-                });
-            })
+            ->when(
+                ! $user->hasAnyRole(['super_admin', 'company_admin', 'hr']),
+                fn($query) => $query->whereRaw('1 = 0')
+            )
+            ->when(
+                $user->hasAnyRole(['company_admin', 'hr']),
+                function ($query) use ($user) {
+                    $query->whereHas('companyUser', function ($query) use ($user) {
+                        $query->whereIn('company_id', CompanyUser::query()
+                            ->where('user_id', $user->id)
+                            ->where('is_active', true)
+                            ->select('company_id'));
+                    });
+                }
+            )
             ->when($search, function ($query) use ($search) {
                 $query->where(function ($query) use ($search) {
                     $query
