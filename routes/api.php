@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\v1\Auth\AuthController;
 use App\Http\Controllers\Api\v1\Branch\BranchController;
 use App\Http\Controllers\Api\v1\Company\CompanyController;
 use App\Http\Controllers\Api\v1\CompanyUser\CompanyUserController;
+use App\Http\Controllers\Api\v1\Department\DepartmentController;
 use App\Http\Controllers\Api\v1\Employee\EmployeeController;
 use App\Http\Controllers\Api\v1\User\UserRoleController;
 use Illuminate\Support\Facades\Route;
@@ -69,14 +70,18 @@ Route::prefix('v1')->group(function () {
         // Get a specific employee
         Route::get('employees/{employee}', [EmployeeController::class, 'show']);
 
-        // Update an employee
-        Route::put('employees/{employee}', [EmployeeController::class, 'update']);
-
         // Partially update an employee
         Route::patch('employees/{employee}', [EmployeeController::class, 'update']);
 
         // Delete an employee
         Route::delete('employees/{employee}', [EmployeeController::class, 'destroy']);
         Route::post('/users/{user}/role', [UserRoleController::class, 'assign']);
+
+
+        Route::get('departments/{company}', [DepartmentController::class, 'index']);
+        Route::post('departments', [DepartmentController::class, 'store']);
+        Route::get('departments/{department}', [DepartmentController::class, 'show']);
+        Route::patch('departments/{department}', [DepartmentController::class, 'update']);
+        Route::delete('departments/{department}', [DepartmentController::class, 'destroy']);
     });
 });

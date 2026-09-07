@@ -22,11 +22,22 @@ return [
             'employees.create',
             'employees.update',
             'employees.delete',
+
+            'departments.view',
+            'departments.create',
+            'departments.update',
+            'departments.delete',
+
         ],
     ],
 
     'hr' => [
-        'permissions' => [],
+        'permissions' => [
+            'employees.view',
+            'employees.create',
+            'employees.update',
+            'employees.delete',
+        ],
     ],
 
     'employee' => [
