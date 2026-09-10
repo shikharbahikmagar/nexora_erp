@@ -47,32 +47,24 @@ Route::prefix('v1')->group(function () {
 
         // Get all company users
         Route::get('company-users', [CompanyUserController::class, 'index']);
-
         // Add a user to a company
         Route::post('company-users/{company}', [CompanyUserController::class, 'store']);
-
         // Get a specific company user
         Route::get('company-users/{companyUser}', [CompanyUserController::class, 'show']);
-
         // Update a company user
         Route::patch('company-users/{companyUser}', [CompanyUserController::class, 'update']);
-
         // Remove a user from a company
         Route::delete('company-users/{companyUser}', [CompanyUserController::class, 'destroy']);
 
 
         // Get all employees
         Route::get('employees', [EmployeeController::class, 'index']);
-
         // Create an employee
         Route::post('employees/{company}', [EmployeeController::class, 'store']);
-
         // Get a specific employee
         Route::get('employees/{employee}', [EmployeeController::class, 'show']);
-
         // Partially update an employee
         Route::patch('employees/{employee}', [EmployeeController::class, 'update']);
-
         // Delete an employee
         Route::delete('employees/{employee}', [EmployeeController::class, 'destroy']);
         Route::post('/users/{user}/role', [UserRoleController::class, 'assign']);
