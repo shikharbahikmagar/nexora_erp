@@ -28,6 +28,7 @@ return [
         'delete',
         'assign-role',
     ],
+
     'departments' => [
         'view',
         'create',

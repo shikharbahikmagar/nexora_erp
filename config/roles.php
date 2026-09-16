@@ -37,6 +37,10 @@ return [
             'employees.create',
             'employees.update',
             'employees.delete',
+
+            'branches.view',
+
+            'departments.view',
         ],
     ],
 
