@@ -15,8 +15,10 @@ use App\Http\Requests\Company\CreateCompanyRequest;
 use App\Http\Requests\Company\UpdateCompanyRequest;
 use App\Http\Resources\Company\CompanyResource;
 use App\Models\Company;
+use App\Models\CompanyUser;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends BaseController
 {
@@ -31,6 +33,14 @@ class CompanyController extends BaseController
      */
     public function index(Request $request, FetchCompany $action): JsonResponse
     {
+
+        $role = Auth::user()->roles()->first();
+
+        if ($role->name != 'super_admin') {
+            return ApiResponse::error('Unauthorized', 401);
+        }
+
+
         $resp = $action->execute(
             search: $request->string('search')->toString(),
             perPage: $request->integer('per_page', 10),
@@ -62,7 +72,7 @@ class CompanyController extends BaseController
 
     /**
      *Company Detail
-     */
+ use    */
     public function show(int $company, GetCompany $action): JsonResponse
     {
         $company = $action->execute($company);
@@ -73,6 +83,34 @@ class CompanyController extends BaseController
             200
         );
     }
+
+    /**
+     *my Company Detail
+     */
+    public function myCompanyDetail(): JsonResponse
+    {
+
+        $user = Auth::user();
+
+        $companyId = CompanyUser::where('user_id', $user->id)->value('company_id');
+
+
+        if (!$companyId) {
+            return ApiResponse::error('Company not found.', 404);
+        }
+
+        $company = Company::findOrFail($companyId);
+
+
+        return ApiResponse::success(
+            new CompanyResource($company),
+            'Company fetched successfully',
+            200
+        );
+    }
+
+
+
 
     /**
      * Update Company

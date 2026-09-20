@@ -24,6 +24,8 @@ Route::prefix('v1')->group(function () {
 
         // get all companies with branches
         Route::get('/get-company', [CompanyController::class, 'index']);
+        //get My Company
+        Route::get('/my-company', [CompanyController::class, 'myCompanyDetail']);
         // get company Detail with branches
         Route::get('/company/{company}', [CompanyController::class, 'show']);
         // create company
