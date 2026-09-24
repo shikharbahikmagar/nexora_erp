@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\v1\Company\CompanyController;
 use App\Http\Controllers\Api\v1\CompanyUser\CompanyUserController;
 use App\Http\Controllers\Api\v1\Department\DepartmentController;
 use App\Http\Controllers\Api\v1\Employee\EmployeeController;
+use App\Http\Controllers\Api\v1\Employee\EmployeeDocumentController;
 use App\Http\Controllers\Api\v1\User\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,13 @@ Route::prefix('v1')->group(function () {
         // Delete an employee
         Route::delete('employees/{employee}', [EmployeeController::class, 'destroy']);
         Route::post('/users/{user}/role', [UserRoleController::class, 'assign']);
+
+        //Employee Documents
+        Route::get('employee-documents/{employee}', [EmployeeDocumentController::class, 'index']);
+        Route::post('employee-document/{employee}', [EmployeeDocumentController::class, 'store']);
+        Route::get('employee-document/{document}', [EmployeeDocumentController::class, 'show']);
+        Route::patch('employee-document/{document}', [EmployeeDocumentController::class, 'update']);
+        Route::delete('employee-document/{document}', [EmployeeDocumentController::class, 'destroy']);
 
 
         Route::get('departments/{company}', [DepartmentController::class, 'index']);
