@@ -6,6 +6,7 @@ use App\Filament\Resources\Companies\Pages\CreateCompany;
 use App\Filament\Resources\Companies\Pages\EditCompany;
 use App\Filament\Resources\Companies\Pages\ListCompanies;
 use App\Filament\Resources\Companies\Schemas\CompanyForm;
+use Filament\Actions\Action;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use App\Models\Company;
@@ -16,6 +17,7 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\Branches\BranchResource;
 
 class CompanyResource extends Resource
 {
@@ -55,6 +57,12 @@ class CompanyResource extends Resource
             ->persistColumnsInSession()
             ->actions([
                 EditAction::make(),
+                Action::make('manageBranches')
+                    ->label('Branches')
+                    ->icon('heroicon-o-building-office-2')
+                    ->url(fn($record) => BranchResource::getUrl('index', [
+                        'company' => $record->id,
+                    ])),
             ]);
     }
     public static function getRelations(): array

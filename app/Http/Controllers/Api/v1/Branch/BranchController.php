@@ -30,11 +30,13 @@ class BranchController extends BaseController
      *Get All Branches
      */
 
-    public function index(Request $request, FetchBranch $action): JsonResponse
+    public function index(Request $request, int $company, FetchBranch $action): JsonResponse
     {
         $resp = $action->execute(
             search: $request->string('search')->toString(),
             perPage: $request->integer('per_page', 10),
+            company: $company
+
         );
 
         return ApiResponse::success(

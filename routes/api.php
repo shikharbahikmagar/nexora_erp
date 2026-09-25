@@ -37,7 +37,7 @@ Route::prefix('v1')->group(function () {
         Route::delete('/delete-company/{company}', [CompanyController::class, 'destroy']);
 
         // get all branches
-        Route::get('/get-branches', [BranchController::class, 'index']);
+        Route::get('/get-branches/{company}', [BranchController::class, 'index']);
         // get company Detail with branches
         Route::get('/branch/{branch}', [BranchController::class, 'show']);
         // Create branch

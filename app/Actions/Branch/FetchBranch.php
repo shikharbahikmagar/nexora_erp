@@ -11,10 +11,11 @@ class FetchBranch
     /**
      * @return Collection<int, Branch>
      */
-    public function execute(?string $search = null, int $perPage = 10,): LengthAwarePaginator
+    public function execute(?string $search = null, int $perPage = 10, $company): LengthAwarePaginator
     {
         return Branch::query()
             ->with('company')
+            ->where('company_id', $company)
             ->when($search, function ($query) use ($search) {
                 $query
                     ->where('name', 'like', "%{$search}%")
