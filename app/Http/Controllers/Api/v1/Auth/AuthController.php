@@ -46,6 +46,16 @@ class AuthController extends Controller
         return ApiResponse::success(
             $result,
             'Login successful.',
+        )->cookie(
+            'auth_token',
+            $result['token'],
+            60 * 24,
+            '/',
+            null,
+            false,   // secure
+            true,   // httpOnly
+            false,
+            'lax'
         );
     }
 

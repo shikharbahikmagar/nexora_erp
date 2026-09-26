@@ -15,7 +15,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/auth/register', [AuthController::class, 'register']);
     Route::post('/auth/login', [AuthController::class, 'login']);
 
-    Route::middleware('auth:sanctum')->group(function () {
+    Route::middleware(['cookie.auth', 'auth:sanctum'])->group(function () {
 
         //Get My Detail
         Route::get('/auth/me', [AuthController::class, 'me']);
