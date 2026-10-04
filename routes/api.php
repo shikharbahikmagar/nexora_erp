@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\v1\Branch\BranchController;
 use App\Http\Controllers\Api\v1\Company\CompanyController;
 use App\Http\Controllers\Api\v1\CompanyUser\CompanyUserController;
 use App\Http\Controllers\Api\v1\Department\DepartmentController;
+use App\Http\Controllers\Api\v1\Employee\EmployeeContractController;
 use App\Http\Controllers\Api\v1\Employee\EmployeeController;
 use App\Http\Controllers\Api\v1\Employee\EmployeeDocumentController;
 use App\Http\Controllers\Api\v1\User\UserRoleController;
@@ -79,6 +80,12 @@ Route::prefix('v1')->group(function () {
         Route::patch('employee-document/{document}', [EmployeeDocumentController::class, 'update']);
         Route::delete('employee-document/{document}', [EmployeeDocumentController::class, 'destroy']);
 
+        //Employee Contract
+        Route::get('employee-contract/{employee}', [EmployeeContractController::class, 'index']);
+        Route::post('employee-contract/{employee}', [EmployeeContractController::class, 'store']);
+        Route::get('employee-contract/{contract}', [EmployeeContractController::class, 'show']);
+        Route::patch('employee-document/{contract}', [EmployeeContractController::class, 'update']);
+        Route::delete('employee-document/{contract}', [EmployeeContractController::class, 'destroy']);
 
         Route::get('departments/{company}', [DepartmentController::class, 'index']);
         Route::post('departments', [DepartmentController::class, 'store']);
