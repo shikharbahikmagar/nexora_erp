@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api\v1\Employee;
 
 use App\Actions\Employee\CreateEmployee;
 use App\Actions\Employee\DeleteEmployee;
-use App\Actions\Employee\FetchEmployee;
 use App\Actions\Employee\GetEmployee;
 use App\Actions\Employee\UpdateEmployee;
+use App\Actions\EmployeeContract\FetchEmployeeContract;
 use App\DTO\Employee\CreateEmployeeDTO;
 use App\DTO\Employee\UpdateEmployeeDTO;
 use App\Helpers\ApiResponse;
@@ -30,10 +30,9 @@ class EmployeeController extends BaseController
      * Fetch all Employees
      */
 
-    public function index(Request $request, FetchEmployee $action): JsonResponse
+    public function index(Request $request, FetchEmployeeContract $action): JsonResponse
     {
         $employees = $action->execute(
-            user: $request->user(),
             search: $request->string('search')->toString(),
             perPage: $request->integer('per_page', 10),
         );
