@@ -24,50 +24,33 @@ Route::prefix('v1')->group(function () {
         // Logout User
         Route::post('/auth/logout', [AuthController::class, 'logout']);
 
-        // get all companies with branches
+        // Companies
         Route::get('/get-company', [CompanyController::class, 'index']);
-        // get My Company
         Route::get('/my-company', [CompanyController::class, 'myCompanyDetail']);
-        // get company Detail with branches
         Route::get('/company/{company}', [CompanyController::class, 'show']);
-        // create company
         Route::post('/create-company', [CompanyController::class, 'store']);
-        // Update company
         Route::patch('/update-company/{company}', [CompanyController::class, 'update']);
-        // soft delete company
         Route::delete('/delete-company/{company}', [CompanyController::class, 'destroy']);
 
-        // get all branches
+        // Branch
         Route::get('/get-branches/{company}', [BranchController::class, 'index']);
-        // get company Detail with branches
         Route::get('/branch/{branch}', [BranchController::class, 'show']);
-        // Create branch
         Route::post('/create-branch', [BranchController::class, 'store']);
-        // Update branch
         Route::patch('/update-branch/{branch}', [BranchController::class, 'update']);
-        // soft delete branch
         Route::delete('/delete-branch/{branch}', [BranchController::class, 'destroy']);
 
-        // Get all company users
+        // Company users
         Route::get('company-users', [CompanyUserController::class, 'index']);
-        // Add a user to a company
         Route::post('company-users/{company}', [CompanyUserController::class, 'store']);
-        // Get a specific company user
         Route::get('company-users/{companyUser}', [CompanyUserController::class, 'show']);
-        // Update a company user
         Route::patch('company-users/{companyUser}', [CompanyUserController::class, 'update']);
-        // Remove a user from a company
         Route::delete('company-users/{companyUser}', [CompanyUserController::class, 'destroy']);
 
-        // Get all employees
+        // Employees
         Route::get('employees', [EmployeeController::class, 'index']);
-        // Create an employee
         Route::post('employees/{company}', [EmployeeController::class, 'store']);
-        // Get a specific employee
         Route::get('employees/{employee}', [EmployeeController::class, 'show']);
-        // Partially update an employee
         Route::patch('employees/{employee}', [EmployeeController::class, 'update']);
-        // Delete an employee
         Route::delete('employees/{employee}', [EmployeeController::class, 'destroy']);
         Route::post('/users/{user}/role', [UserRoleController::class, 'assign']);
 
@@ -92,6 +75,7 @@ Route::prefix('v1')->group(function () {
         Route::patch('attendances/{attendance}', [AttendanceController::class, 'update']);
         Route::delete('attendances/{attendance}', [AttendanceController::class, 'destroy']);
 
+        // Departments
         Route::get('departments/{company}', [DepartmentController::class, 'index']);
         Route::post('departments', [DepartmentController::class, 'store']);
         Route::get('departments/{department}', [DepartmentController::class, 'show']);
