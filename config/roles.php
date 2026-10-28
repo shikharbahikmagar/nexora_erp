@@ -45,6 +45,13 @@ return [
     ],
 
     'employee' => [
-        'permissions' => [],
+        'permissions' => [
+
+            'companies.view',
+            'employees.view',
+            'branches.view',
+            'departments.view',
+
+        ],
     ],
 ];
