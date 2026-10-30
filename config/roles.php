@@ -38,6 +38,7 @@ return [
             'employees.update',
             'employees.delete',
 
+            'companies.view',
             'branches.view',
 
             'departments.view',
