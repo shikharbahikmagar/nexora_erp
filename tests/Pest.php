@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 
 /*
@@ -47,4 +49,24 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+/**
+ * Seed the permissions and roles defined in config/permissions.php and config/roles.php.
+ */
+function syncAccessControl(): void
+{
+    Artisan::call('permissions:sync');
+    Artisan::call('role:sync');
+}
+
+/**
+ * Create a user and assign the given role to them.
+ */
+function userWithRole(string $role): User
+{
+    $user = User::factory()->create();
+    $user->assignRole($role);
+
+    return $user;
 }
