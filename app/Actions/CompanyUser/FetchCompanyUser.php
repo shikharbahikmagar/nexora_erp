@@ -13,7 +13,7 @@ class FetchCompanyUser
     public function execute(int $perPage = 10): LengthAwarePaginator
     {
         return CompanyUser::query()
-            ->with(['company', 'role', 'user'])
+            ->with(['company', 'user'])
             ->latest()
             ->paginate($perPage);
     }

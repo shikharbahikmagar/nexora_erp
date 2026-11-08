@@ -6,8 +6,8 @@ use App\Models\Branch;
 
 class GetBranch
 {
-    public function execute(int $branchId): Branch
+    public function execute(Branch $branch): Branch
     {
-        return Branch::with('Company')->findOrFail($branchId);
+        return $branch->load('Company');
     }
 }

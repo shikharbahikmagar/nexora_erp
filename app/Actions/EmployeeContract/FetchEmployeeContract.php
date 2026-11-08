@@ -20,7 +20,6 @@ class FetchEmployeeContract
         return EmployeeContract::query()
             ->with([
                 'employee',
-                'designation',
                 'department',
                 'branch',
             ])

@@ -21,7 +21,7 @@ class EmployeeContract extends Model
         'end_date',
         'probation_start_date',
         'probation_end_date',
-        'designation_id',
+        'designation',
         'department_id',
         'branch_id',
         'employment_status',
@@ -58,11 +58,6 @@ class EmployeeContract extends Model
     public function employee(): BelongsTo
     {
         return $this->belongsTo(Employee::class);
-    }
-
-    public function designation(): BelongsTo
-    {
-        return $this->belongsTo(Designation::class);
     }
 
     public function department(): BelongsTo

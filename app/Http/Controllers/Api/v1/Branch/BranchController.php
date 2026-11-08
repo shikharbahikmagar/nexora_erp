@@ -25,11 +25,9 @@ class BranchController extends BaseController
         $this->authorizeResource(Branch::class, 'branch');
     }
 
-
     /**
      *Get All Branches
      */
-
     public function index(Request $request, int $company, FetchBranch $action): JsonResponse
     {
         $resp = $action->execute(
@@ -49,7 +47,6 @@ class BranchController extends BaseController
     /**
      *Create Branch
      */
-
     public function store(
         CreateBranchRequest $request,
         CreateBranch $action
@@ -65,26 +62,23 @@ class BranchController extends BaseController
         );
     }
 
-
     /**
      *Branch Detail
      */
-    public function show(int $branch, GetBranch $action): JsonResponse
+    public function show(Branch $branch, GetBranch $action): JsonResponse
     {
         $branch = $action->execute($branch);
 
         return ApiResponse::success(
             new BranchResource($branch),
             'Branch fetched successfully',
-            201
+            200
         );
     }
-
 
     /**
      *Update Branch Detail
      */
-
     public function update(UpdateBranchRequest $request, Branch $branch, UpdateBranch $action): JsonResponse
     {
         $dto = UpdateBranchDTO::fromArray($request->validated());

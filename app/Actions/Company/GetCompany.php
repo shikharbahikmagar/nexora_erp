@@ -6,8 +6,8 @@ use App\Models\Company;
 
 class GetCompany
 {
-    public function execute(int $companyId): Company
+    public function execute(Company $company): Company
     {
-        return Company::with('branches')->findOrFail($companyId);
+        return $company->load('branches');
     }
 }
