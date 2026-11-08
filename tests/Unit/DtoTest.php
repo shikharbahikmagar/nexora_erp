@@ -67,10 +67,17 @@ test('update branch dto removes null values from its payload', function () {
 });
 
 test('company user dtos map their payloads', function () {
-    $create = CreateCompanyUserDTO::fromArray(['user_id' => 7, 'is_active' => false]);
+    $create = CreateCompanyUserDTO::fromArray([
+        'name' => 'Jane Doe',
+        'email' => 'jane@nexora.test',
+        'password' => 'password123',
+        'is_active' => false,
+    ]);
     $update = UpdateCompanyUserDTO::fromArray(['is_active' => false]);
 
-    expect($create->userId)->toBe(7)
+    expect($create->name)->toBe('Jane Doe')
+        ->and($create->email)->toBe('jane@nexora.test')
+        ->and($create->password)->toBe('password123')
         ->and($create->isActive)->toBeFalse()
         ->and($update->toArray())->toBe(['is_active' => false]);
 });
