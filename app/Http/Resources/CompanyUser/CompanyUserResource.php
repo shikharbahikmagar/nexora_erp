@@ -26,10 +26,6 @@ class CompanyUserResource extends JsonResource
                 'name' => $this->whenLoaded('user', fn () => $this->user->name),
                 'email' => $this->whenLoaded('user', fn () => $this->user->email),
             ],
-            'role' => $this->whenLoaded('role', fn () => $this->role ? [
-                'id' => $this->role->id,
-                'name' => $this->role->name,
-            ] : null),
             'is_active' => $this->is_active,
             'created_at' => $this->created_at?->toISOString(),
             'updated_at' => $this->updated_at?->toISOString(),

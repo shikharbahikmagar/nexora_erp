@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Models\Role;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CompanyUser extends Model
@@ -11,7 +10,6 @@ class CompanyUser extends Model
     protected $fillable = [
         'company_id',
         'user_id',
-        'role_id',
         'is_active',
     ];
 
@@ -27,11 +25,6 @@ class CompanyUser extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function role(): BelongsTo
-    {
-        return $this->belongsTo(Role::class);
     }
 
     public function employee()

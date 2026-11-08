@@ -48,7 +48,7 @@ Route::prefix('v1')->group(function () {
 
         // Employees
         Route::get('employees', [EmployeeController::class, 'index']);
-        Route::post('employees/{company}', [EmployeeController::class, 'store']);
+        Route::post('employees', [EmployeeController::class, 'store']);
         Route::get('employees/{employee}', [EmployeeController::class, 'show']);
         Route::patch('employees/{employee}', [EmployeeController::class, 'update']);
         Route::delete('employees/{employee}', [EmployeeController::class, 'destroy']);
@@ -62,11 +62,11 @@ Route::prefix('v1')->group(function () {
         Route::delete('employee-document/{document}', [EmployeeDocumentController::class, 'destroy']);
 
         // Employee Contract
-        Route::get('employee-contract/{employee}', [EmployeeContractController::class, 'index']);
+        Route::get('employee-contracts/{employee}', [EmployeeContractController::class, 'index']);
         Route::post('employee-contract/{employee}', [EmployeeContractController::class, 'store']);
         Route::get('employee-contract/{contract}', [EmployeeContractController::class, 'show']);
-        Route::patch('employee-document/{contract}', [EmployeeContractController::class, 'update']);
-        Route::delete('employee-document/{contract}', [EmployeeContractController::class, 'destroy']);
+        Route::patch('employee-contract/{contract}', [EmployeeContractController::class, 'update']);
+        Route::delete('employee-contract/{contract}', [EmployeeContractController::class, 'destroy']);
 
         // Attendance
         Route::get('attendances', [AttendanceController::class, 'index']);
@@ -78,7 +78,7 @@ Route::prefix('v1')->group(function () {
         // Departments
         Route::get('departments/{company}', [DepartmentController::class, 'index']);
         Route::post('departments', [DepartmentController::class, 'store']);
-        Route::get('departments/{department}', [DepartmentController::class, 'show']);
+        Route::get('department/{department}', [DepartmentController::class, 'show']);
         Route::patch('departments/{department}', [DepartmentController::class, 'update']);
         Route::delete('departments/{department}', [DepartmentController::class, 'destroy']);
     });

@@ -27,7 +27,8 @@ class UpdateEmployeeContractRequest extends FormRequest
     public function rules(): array
     {
 
-        $contract = $this->route('employeeContract');
+        $contract = $this->route('contract');
+
         return [
             'contract_number' => [
                 'required',
@@ -45,7 +46,7 @@ class UpdateEmployeeContractRequest extends FormRequest
             'probation_start_date' => ['nullable', 'date'],
             'probation_end_date' => ['nullable', 'date', 'after_or_equal:probation_start_date'],
 
-            'designation_id' => ['nullable', 'integer', 'exists:designations,id'],
+            'designation' => ['nullable', 'string', 'max:255'],
             'department_id' => ['nullable', 'integer', 'exists:departments,id'],
             'branch_id' => ['nullable', 'integer', 'exists:branches,id'],
 

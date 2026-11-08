@@ -27,7 +27,6 @@ class CompanyController extends BaseController
         $this->authorizeResource(Company::class, 'company');
     }
 
-
     /**
      * Fetch all companies
      */
@@ -40,13 +39,10 @@ class CompanyController extends BaseController
             return ApiResponse::error('Unauthorized', 401);
         }
 
-
         $resp = $action->execute(
             search: $request->string('search')->toString(),
             perPage: $request->integer('per_page', 10),
         );
-
-
 
         return ApiResponse::success(
             $resp,
@@ -71,9 +67,9 @@ class CompanyController extends BaseController
     }
 
     /**
-     *Company Detail
- use    */
-    public function show(int $company, GetCompany $action): JsonResponse
+     * Company Detail
+     */
+    public function show(Company $company, GetCompany $action): JsonResponse
     {
         $company = $action->execute($company);
 
@@ -94,13 +90,11 @@ class CompanyController extends BaseController
 
         $companyId = CompanyUser::where('user_id', $user->id)->value('company_id');
 
-
-        if (!$companyId) {
+        if (! $companyId) {
             return ApiResponse::error('Company not found.', 404);
         }
 
         $company = Company::findOrFail($companyId);
-
 
         return ApiResponse::success(
             new CompanyResource($company),
@@ -108,9 +102,6 @@ class CompanyController extends BaseController
             200
         );
     }
-
-
-
 
     /**
      * Update Company
@@ -132,7 +123,6 @@ class CompanyController extends BaseController
      */
     public function destroy(Company $company, DeleteCompany $action): JsonResponse
     {
-
 
         $deleted = $action->execute($company);
 

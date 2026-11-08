@@ -10,109 +10,101 @@ use Carbon\Carbon;
 readonly class CreateEmployeeDTO
 {
     public function __construct(
-        // Auth & Identity
-        public int $company_id,
-        public string $email,
-        public string $password,
-
-        // Employee Identification
-        public string $employee_code,
-        public string $first_name,
-        public string $last_name,
-        public ?string $middle_name = null,
-
-        // Organizational Structure
-        public ?int $branch_id = null,
-
-        // Employment Configuration
-        public ?Carbon $joining_date = null,
-        public EmploymentType $employment_type = EmploymentType::FULL_TIME,
-        public EmploymentStatus $employment_status = EmploymentStatus::ACTIVE,
-
-        // Contact Details
-        public ?string $personal_email = null,
+        public int $companyUserId,
+        public string $employeeCode,
+        public string $firstName,
+        public string $lastName,
+        public ?string $middleName = null,
+        public ?int $branchId = null,
+        public ?Carbon $joiningDate = null,
+        public EmploymentType $employmentType = EmploymentType::FULL_TIME,
+        public EmploymentStatus $employmentStatus = EmploymentStatus::ACTIVE,
+        public ?string $dateOfBirth = null,
+        public ?string $gender = null,
+        public ?string $maritalStatus = null,
+        public ?string $nationality = null,
+        public ?string $profilePhoto = null,
+        public ?string $personalEmail = null,
         public ?string $phone = null,
-
-        // Optional Meta
+        public ?string $alternatePhone = null,
+        public ?string $probationEndDate = null,
+        public ?string $confirmationDate = null,
+        public ?string $resignationDate = null,
+        public ?string $terminationDate = null,
+        public ?string $terminationReason = null,
         public ?string $notes = null,
     ) {}
 
-    /**
-     * Factory constructor from standard Form Request
-     */
-    public static function fromRequest(CreateEmployeeRequest $request, int $companyId): self
+    public static function fromRequest(CreateEmployeeRequest $request): self
     {
-        return new self(
-            company_id: $companyId,
-            email: $request->validated('email'),
-            password: $request->validated('password'),
-            employee_code: $request->validated('employee_code'),
-            first_name: $request->validated('first_name'),
-            last_name: $request->validated('last_name'),
-            middle_name: $request->validated('middle_name'),
-            branch_id: $request->validated('branch_id') ? (int) $request->validated('branch_id') : null,
-            joining_date: $request->validated('joining_date')
-                ? Carbon::parse($request->validated('joining_date'))
-                : now(),
-            employment_type: EmploymentType::tryFrom($request->validated('employment_type') ?? '')
-                ?? EmploymentType::FULL_TIME,
-            employment_status: EmploymentStatus::tryFrom($request->validated('employment_status') ?? '')
-                ?? EmploymentStatus::ACTIVE,
-            personal_email: $request->validated('personal_email'),
-            phone: $request->validated('phone'),
-            notes: $request->validated('notes'),
-        );
+        return self::fromArray($request->validated());
     }
 
     /**
-     * Factory constructor for array payloads (jobs, seeds, tests)
-     *
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      */
     public static function fromArray(array $data): self
     {
         return new self(
-            company_id: (int) $data['company_id'],
-            email: (string) $data['email'],
-            password: (string) $data['password'],
-            employee_code: (string) $data['employee_code'],
-            first_name: (string) $data['first_name'],
-            last_name: (string) $data['last_name'],
-            middle_name: $data['middle_name'] ?? null,
-            branch_id: isset($data['branch_id']) ? (int) $data['branch_id'] : null,
-            joining_date: isset($data['joining_date']) ? Carbon::parse($data['joining_date']) : now(),
-            employment_type: is_string($data['employment_type'] ?? null)
+            companyUserId: (int) $data['company_user_id'],
+            employeeCode: (string) $data['employee_code'],
+            firstName: (string) $data['first_name'],
+            lastName: (string) $data['last_name'],
+            middleName: $data['middle_name'] ?? null,
+            branchId: isset($data['branch_id']) ? (int) $data['branch_id'] : null,
+            joiningDate: isset($data['joining_date']) ? Carbon::parse($data['joining_date']) : now(),
+            employmentType: is_string($data['employment_type'] ?? null)
                 ? (EmploymentType::tryFrom($data['employment_type']) ?? EmploymentType::FULL_TIME)
                 : ($data['employment_type'] ?? EmploymentType::FULL_TIME),
-            employment_status: is_string($data['employment_status'] ?? null)
+            employmentStatus: is_string($data['employment_status'] ?? null)
                 ? (EmploymentStatus::tryFrom($data['employment_status']) ?? EmploymentStatus::ACTIVE)
                 : ($data['employment_status'] ?? EmploymentStatus::ACTIVE),
-            personal_email: $data['personal_email'] ?? null,
+            dateOfBirth: $data['date_of_birth'] ?? null,
+            gender: $data['gender'] ?? null,
+            maritalStatus: $data['marital_status'] ?? null,
+            nationality: $data['nationality'] ?? null,
+            profilePhoto: $data['profile_photo'] ?? null,
+            personalEmail: $data['personal_email'] ?? null,
             phone: $data['phone'] ?? null,
+            alternatePhone: $data['alternate_phone'] ?? null,
+            probationEndDate: $data['probation_end_date'] ?? null,
+            confirmationDate: $data['confirmation_date'] ?? null,
+            resignationDate: $data['resignation_date'] ?? null,
+            terminationDate: $data['termination_date'] ?? null,
+            terminationReason: $data['termination_reason'] ?? null,
             notes: $data['notes'] ?? null,
         );
     }
 
     /**
-     * Converts DTO into Eloquent creation payload for the Employee model
-     *
      * @return array<string, mixed>
      */
-    public function toArray(int $companyUserId): array
+    public function toArray(): array
     {
         return array_filter([
-            'company_user_id'   => $companyUserId,
-            'branch_id'         => $this->branch_id,
-            'employee_code'     => $this->employee_code,
-            'first_name'        => $this->first_name,
-            'middle_name'       => $this->middle_name,
-            'last_name'         => $this->last_name,
-            'personal_email'    => $this->personal_email,
-            'phone'             => $this->phone,
-            'joining_date'      => $this->joining_date?->toDateString(),
-            'employment_type'   => $this->employment_type->value,
-            'employment_status' => $this->employment_status->value,
-            'notes'             => $this->notes,
-        ], fn($value) => $value !== null);
+            'company_user_id' => $this->companyUserId,
+            'branch_id' => $this->branchId,
+            'employee_code' => $this->employeeCode,
+            'first_name' => $this->firstName,
+            'middle_name' => $this->middleName,
+            'last_name' => $this->lastName,
+            'date_of_birth' => $this->dateOfBirth,
+            'gender' => $this->gender,
+            'marital_status' => $this->maritalStatus,
+            'nationality' => $this->nationality,
+            'profile_photo' => $this->profilePhoto,
+            'personal_email' => $this->personalEmail,
+            'phone' => $this->phone,
+            'alternate_phone' => $this->alternatePhone,
+            'joining_date' => $this->joiningDate?->toDateString(),
+            'employment_type' => $this->employmentType->value,
+            'employment_status' => $this->employmentStatus->value,
+            'probation_end_date' => $this->probationEndDate,
+            'confirmation_date' => $this->confirmationDate,
+            'resignation_date' => $this->resignationDate,
+            'termination_date' => $this->terminationDate,
+            'termination_reason' => $this->terminationReason,
+            'notes' => $this->notes,
+        ], fn ($value) => $value !== null);
     }
 }
